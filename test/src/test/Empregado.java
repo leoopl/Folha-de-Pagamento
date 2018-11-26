@@ -11,6 +11,7 @@ public class Empregado {
 	private int syndicateID;
 	private double syndicateService;
 	private double salary;
+	private int hours;
 	
 	public void setName(String name) {
 		this.name = name;
@@ -87,8 +88,19 @@ public class Empregado {
 		this.syndicateService = syndicateService;
 	}
 	
-	public double getSalary() {
-		return salary;
+	public double getSalary() {//sem taxa de sindicato
+		if (type.equals("Hourly")) {
+			if (hours > 8) {
+				int mult = hours - 8;
+				return salary + mult*( 1.5 *salary);
+			}else {
+				return salary;
+			}
+		} else if (type.equals("Commissioned")) {
+			return salary;//falta comissão						
+		}else {
+			return salary;
+		}
 	}
 	public void setSalary(double salary) {
 		this.salary = salary;
@@ -103,5 +115,11 @@ public class Empregado {
 		System.out.println("Payment Method: "+ getPaymentMethod());
 		System.out.println("Syndicate: "+ getSyndicate());
 		System.out.println("Syndicate Tax: "+ getSyndicateTax());
+	}
+	public int getHours() {
+		return hours;
+	}
+	public void setHours(int hours) {
+		this.hours = hours;
 	}
 	} 

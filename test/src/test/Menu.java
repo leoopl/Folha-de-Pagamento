@@ -154,6 +154,48 @@ public class Menu {
 		}
 	}
 	
+	static void card(ArrayList<Empregado> employedList) {
+		if(list(employedList)) {
+			System.out.println("Escolha o ID do empregado que Lançar o cartão: ");
+			Scanner in = new Scanner(System.in);
+			int input = in.nextInt();
+			if (input > employedList.size()) {
+				System.out.println("Empregado inexistente!");
+			} else {
+				if (employedList.get(input).getType().equals("Hourly")) {
+					System.out.println("Quantas horas vocês trabalhou: ");
+					int scan = in.nextInt();
+					employedList.get(input).setHours(scan);					
+				}else {
+					System.out.println("Empregado não pode lançar cartão!");
+				}
+			}
+		}
+	}
+	
+	static void sale(ArrayList<Empregado> employedList) {
+		if (list(employedList)) {
+			System.out.println("Escolha o ID do empregado que Lançar a Venda: ");
+			Scanner in = new Scanner(System.in);
+			int input = in.nextInt();
+			if (input > employedList.size()) {
+				System.out.println("Empregado inexistente!");
+			} else {
+				if (employedList.get(input).getType().equals("Commissioned")) {
+					System.out.println("Informe o valor da venda: ");
+					double value = in.nextInt();
+					System.out.println("Informe a porcentagem do vendedor: ");
+					double pect = in.nextInt();
+					value = (value*pect)/100;
+					System.out.println("Porcentagem recebida pelo vendedor: R$"+ value);
+					employedList.get(input).setSalary(employedList.get(input).getSalary() + value);					
+				}else {
+					System.out.println("Empregado não pode lançar venda!");
+				}
+			}
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		
@@ -167,9 +209,8 @@ public class Menu {
 	      System.out.println("----------------MENU----------------");
 	      System.out.println("[1] Adição de um empregado");
 	      System.out.println("[2] Remoção de um empregado");
-	      //System.out.println("[3] Lançar um Cartão de Ponto");
-	      //System.out.println("[4] Lançar um Resultado Venda");
-	      //System.out.println("[5] Lançar uma taxa de serviço");
+	      System.out.println("[3] Lançar um Cartão de Ponto");
+	      System.out.println("[4] Lançar um Resultado Venda");
 	      //System.out.println("[5] Lançar uma taxa de serviço");
 	      System.out.println("[6] Alterar detalhes de um empregado");
 	      //System.out.println("[7] Rodar a folha de pagamento para hoje");
@@ -185,8 +226,8 @@ public class Menu {
 	      	case 0: list(employedList); break;
 	        case 1: add(employedList, ID++);break;
 	        case 2: remove(employedList);break;
-	        case 3:System.out.println("3:");break;
-	        case 4:System.out.println("4:");break;
+	        case 3: card(employedList);break;
+	        case 4: sale(employedList);break;
 	        case 5:System.out.println("5:");break;
 	        case 6: edit(employedList);break;
 	        case 7:System.out.println("7:");break;
