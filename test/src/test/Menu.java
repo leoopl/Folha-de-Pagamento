@@ -74,6 +74,7 @@ public class Menu {
 	static void edit(ArrayList<Empregado> employedList) {
 		if (list(employedList)) {
 			Scanner in = new Scanner(System.in);
+			Scanner x = new Scanner(System.in);
 			System.out.println("ID do funcionario que deseja motificar: ");
 			int input = in.nextInt();
 			if (input > employedList.size()) {
@@ -95,13 +96,13 @@ public class Menu {
 					switch (editInput) {
 					case 1:
 						System.out.println("New name: ");
-						//String newName = in.nextLine();
-						employedList.get(input).setName(in.nextLine());
+						String newName = x.nextLine();
+						employedList.get(input).setName(newName);
 						break;
 					case 2:
 						System.out.println("New Address: ");
-						String newAddress = in.nextLine();
-						employedList.get(input).setName(newAddress);
+						String newAddress = x.nextLine();
+						employedList.get(input).setAddress(newAddress);
 						break;
 					case 3:
 						System.out.println("Choose your employee type:\n [0] Hourly \n [1] Salaried \n [2] Commissioned");
